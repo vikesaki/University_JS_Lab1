@@ -12,34 +12,38 @@ function end_lines(n){
     document.write(`</div>`);
 }
 
-function draw_table(){
-    let count = -1;
+function draw_table(n){
+    if (n%2 != 0) {
+        n--;
+        //document.write(`<p>the table looks weird when the number is odd, so it will be reduced by 1 </p>`);
+    }
+    let count = 0;
     document.write(`<div></div><table border="1" align="center" width="50%" cellpadding="15" cellspacing="0">`)
 
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < n/2; i++) {
         document.write(`<tr>`);
-        for (let j = 0; j < 8; j++) {
-            if (j < 4)
+        for (let j = 0; j < n; j++) {
+            if (j < n/2)
                 document.write('<td></td>');
             else {
-                document.write('<td bgcolor="#808080"></td>'.repeat(3 - count));
+                document.write('<td bgcolor="#808080"></td>'.repeat(n / 2 - count));
                 count++;
                 break;
             }
         }
-        if (count !== 0){
-            document.write('<td></td>'.repeat(count));
+        if (count !== 1){
+            document.write('<td></td>'.repeat(count-1));
         }
         document.write(`</tr>`);
     }
     count = 0;
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < n/2; i++) {
         document.write(`<tr>`);
-        document.write('<td bgcolor="#808080"></td>'.repeat(4 - count));
+        document.write('<td bgcolor="#808080"></td>'.repeat((n / 2) - count));
         if (count !== 0)
             document.write('<td></td>'.repeat(count*2));
         document.write('<td bgcolor="#808080"></td>')
-        document.write('<td></td>'.repeat(3 - count));
+        document.write('<td></td>'.repeat((n / 2) - 1 - count));
         document.write(`</tr>`);
         count++;
     }
